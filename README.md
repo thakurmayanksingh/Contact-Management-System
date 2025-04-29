@@ -104,9 +104,10 @@ update_contact(1, "New Name", "1234567890", "new@email.com", "New Address")
 
 ---
 
-## 👤 Author
+## 👤 Authors
 
-- Ishita Modi (with contributions from team members)
+- Mayank Singh  
+- Ishita Modi
 
 ---
 
