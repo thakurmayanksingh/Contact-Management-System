@@ -19,7 +19,7 @@ try:
         conn = sql.connect(directory)
         cur = conn.cursor()
         cur.execute('''
-            SELECT * FROM contacts;
+            SELECT name, phone, email, address FROM contacts;
         ''')
         rows = cur.fetchall()
         conn.close()
@@ -61,6 +61,16 @@ try:
         ''', (new_name, new_phone, new_email, new_address, contact_id))
         conn.commit()
         conn.close()
+
+    def contact_exists(name, phone):
+        conn = sql.connect(directory)
+        cur = conn.cursor()
+        cur.execute('''
+            SELECT * FROM contacts WHERE name = ? AND phone = ?
+        ''', (name, phone))
+        result = cur.fetchone()
+        conn.close()
+        return result is not None
 
 except Exception as e:
     print(f"Error: {e}")
