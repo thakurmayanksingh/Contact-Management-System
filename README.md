@@ -7,7 +7,7 @@ Whether you're storing friends’ numbers or managing a professional network, th
 
 ---
 
-## 🔹 Features
+## Features
 
 - Add new contacts with name, phone number, email, and address
 - View all saved contacts in one go
@@ -20,14 +20,14 @@ Simple. Functional. Efficient.
 
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 - **Python 3.x** – Clean and modular script-based application  
 - **SQLite3** – Built-in lightweight database (no installation required)
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Contact-Management-System/
@@ -44,7 +44,7 @@ Contact-Management-System/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 1. **Clone the repository**:
 
@@ -65,7 +65,7 @@ The app will create a `contacts.db` file inside the `database/` folder if it doe
 
 ---
 
-## 📌 Sample Code Usage
+## Sample Code Usage
 
 Here's how you might use functions directly within `main.py`:
 
@@ -89,7 +89,7 @@ search_contact("Ishita")
 
 ---
 
-## 📄 Function Reference
+## Function Reference
 
 | Function             | Description                                |
 |----------------------|--------------------------------------------|
@@ -102,7 +102,7 @@ search_contact("Ishita")
 
 ---
 
-## 💡 Why This Project?
+## Why This Project?
 
 This project was designed to be a simple and practical way to explore:
 
@@ -115,20 +115,12 @@ It’s great for beginners learning Python or anyone who wants a functional offl
 
 ---
 
-## 👥 Authors
+## Authors
 
 - **Mayank Singh** — [LinkedIn](https://www.linkedin.com/in/mayank-singh-367572246/) • [GitHub](https://github.com/thakurmayanksingh)
 - **Ishita Modi** — [LinkedIn](https://www.linkedin.com/in/ishita-modi-155676341/) • [GitHub](https://github.com/ishita230105)
 
 We collaborated on this project to improve our development skills and to build something helpful for the community.
-
----
-
-## 📜 License
-
-This project is licensed under the [MIT License](LICENSE).  
-Feel free to use, adapt, or build upon it.
-
 ---
 
 *Thanks for checking it out! Contributions and suggestions are always welcome.*
