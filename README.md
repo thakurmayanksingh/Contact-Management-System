@@ -29,22 +29,18 @@ Simple. Functional. Efficient.
 
 ## Project Structure
 
-Contact-Management-System
-
-├── database
-
-* contacts.db                        
-
-├── scripts
-    
-*  db_operations.py                
-*  initialize_db.py
-
-├── main.py                        
-
-├── README.md                           (you’re reading it!)
-
-
+```
+Contact-Management-System/
+├── database/
+│   └── contacts.db
+│
+├── scripts/
+│   ├── db_operations.py
+│   └── initialize_db.py
+│
+├── main.py
+└── README.md   ← You’re reading it!
+```
 
      > The `contacts.db` file is auto-generated the first time you run the program.
 
@@ -77,14 +73,14 @@ Here's how you might use functions directly within `main.py`:
 
 ```python
 # Adding a new contact
-add_contact("Ishita", "7983138050", "ishitamodi0@gmail.com", "Firozabad")
+add_contact("Ishita", "7983XXXXXX", "ishit@example.com", "India")
 
 # Viewing all contacts
 for contact in view_all_contact():
     print(contact)
 
 # Updating a contact (using contact ID)
-update_contact(1, "Ishita Modi", "9999999999", "ishita@example.com", "Agra")
+update_contact(1, "Ishita Modi", "9999999999", "ishita@example.com", "Australia")
 
 # Deleting a contact
 delete_contact("Ishita")
