@@ -31,28 +31,18 @@ Simple. Functional. Efficient.
 
 Contact-Management-System
 
-├── .idea  
-
-* inspectionProfiles                   # Code inspection and formatting settings
-
 ├── database
 
-* contacts.db                          # SQLite database storing all contact information
+* contacts.db                          (SQLite database storing all contact information)
 
 ├── scripts
-
-* ├── __pycache__                      # Auto-generated compiled Python files
     
-* ├── db_operations.py                 # Core database functions: add, view, search, delete, update
-   *  initialize_db.py                 # Initializes the database and creates tables if not present
+*  db_operations.py                  (Core database functions: add, view, search, delete, update)
+*  initialize_db.py                  (Initializes the database and creates tables if not present)
 
-├── .gitignore                         # Specifies untracked files to ignore in Git
+├── main.py                             (Main CLI interface entry point of the application)
 
-├── .gitattributes                     # Git configuration for repository attributes
-
-├── main.py                            # Main CLI interface (entry point of the application)
-
-├── README.md                          # Project documentation (you’re reading it!)
+├── README.md                           (Project documentation (you’re reading it!)
 
 
 
