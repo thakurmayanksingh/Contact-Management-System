@@ -51,8 +51,8 @@ try:
         conn.commit()
         conn.close()
 
-    # Update Contact
-    def update_contact(contact_id, new_name, new_phone, new_email, new_address):
+    # Update All Fields
+    def update_All_field(contact_id, new_name, new_phone, new_email, new_address):
         conn = sql.connect(directory)
         cur = conn.cursor()
         cur.execute('''
@@ -60,6 +60,41 @@ try:
             SET name=?, phone=?, email=?, address=?
             WHERE id=?
         ''', (new_name, new_phone, new_email, new_address, contact_id))
+        conn.commit()
+        conn.close()
+
+    # Update Particular Field
+    def update_particular_field(contact_id, new_name=None, new_phone=None, new_email=None, new_address=None):
+        conn = sql.connect(directory)
+        cur = conn.cursor()
+
+        fields = []
+        values = []
+
+        if new_name is not None:
+            fields.append("name = ?")
+            values.append(new_name)
+        if new_phone is not None:
+            fields.append("phone = ?")
+            values.append(new_phone)
+        if new_email is not None:
+            fields.append("email = ?")
+            values.append(new_email)
+        if new_address is not None:
+            fields.append("address = ?")
+            values.append(new_address)
+        if not fields:
+            print("No fields to update.")
+            return
+
+        values.append(contact_id)
+
+        query = f'''
+            UPDATE contacts
+            SET {", ".join(fields)}
+            WHERE id = ?
+        '''
+        cur.execute(query, values)
         conn.commit()
         conn.close()
 
@@ -92,6 +127,8 @@ try:
 
 except Exception as e:
     print(f"Error: {e}")
+update_particular_field(contact_id=18, new_name='Ishita')
+update_All_field()    
 
 # contacts = view_all_contact()
 # for contact in contacts:
