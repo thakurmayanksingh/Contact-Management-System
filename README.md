@@ -33,16 +33,16 @@ Contact-Management-System
 
 ├── database
 
-* contacts.db                          (SQLite database storing all contact information)
+* contacts.db                        
 
 ├── scripts
     
-*  db_operations.py                  (Core database functions: add, view, search, delete, update)
-*  initialize_db.py                  (Initializes the database and creates tables if not present)
+*  db_operations.py                
+*  initialize_db.py
 
-├── main.py                             (Main CLI interface entry point of the application)
+├── main.py                        
 
-├── README.md                           (Project documentation (you’re reading it!)
+├── README.md                           (you’re reading it!)
 
 
 
