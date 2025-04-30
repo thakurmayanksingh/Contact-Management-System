@@ -30,16 +30,21 @@ try:
     def search_contact(keyword):
         conn = sql.connect(directory)
         cur = conn.cursor()
+
+        keyword = f"%{keyword}%"
+
         cur.execute('''
             SELECT * FROM contacts 
             WHERE name LIKE ? OR phone LIKE ?;
-        ''', (f"%{keyword}", f"%{keyword}"))
+        ''', (keyword,keyword))
+
         rows = cur.fetchall()
         conn.close()
-        if rows:
-            return rows
-        else:
-            return "No Contact Found"
+        return rows
+
+
+
+
 
     # Delete Contact
     def delete_contact(keyword):
@@ -127,8 +132,8 @@ try:
 
 except Exception as e:
     print(f"Error: {e}")
-update_particular_field(contact_id=18, new_name='Ishita')
-update_All_field()    
+# update_particular_field(contact_id=18, new_name='Ishita')
+# update_All_field()    
 
 # contacts = view_all_contact()
 # for contact in contacts:

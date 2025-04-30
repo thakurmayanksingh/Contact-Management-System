@@ -82,20 +82,49 @@ if __name__ == '__main__':
                         db_operations.delete_contact(keyword)
 
                     elif inp == 3:
-                        print("Fill the below fields to update a contact. (* means it is mandatory field)")
-                        inp_contact_id = str(input("Enter Contact ID (id to update if you don't know then search and"
-                                                   " get it.): "))
-                        inp_name = str(input("Enter New Name (*Required): "))
-                        inp_phone = str(input("Enter New Phone (*Required): "))
-                        inp_email = str(input("Enter New Email: "))
-                        inp_address = str(input("Enter New Address: "))
-                        db_operations.update_contact(inp_contact_id, inp_name, inp_phone, inp_email, inp_address)
+                        print("You can choose to update all fields or just specific ones.")
+                        update_choice = input("Do you want to update all fields? (yes/no): ").strip().lower()
+
+                        contact_id = input("Enter Contact ID (if you don't know it, search for it first): ").strip()
+
+                        if update_choice == 'yes':
+                            name = input("Enter New Name (*Required): ").strip()
+                            phone = input("Enter New Phone (*Required): ").strip()
+                            email = input("Enter New Email: ").strip()
+                            address = input("Enter New Address: ").strip()
+
+                            db_operations.update_All_field(contact_id, name, phone, email, address)
+                            print("Contact updated successfully.")
+
+                        elif update_choice == 'no':
+                            print("Leave blank to skip any field.")
+                            name = input("New Name: ").strip() or None
+                            phone = input("New Phone: ").strip() or None
+                            email = input("New Email: ").strip() or None
+                            address = input("New Address: ").strip() or None
+
+                            db_operations.update_particular_field(
+                                contact_id,
+                                new_name=name,
+                                new_phone=phone,
+                                new_email=email,
+                                new_address=address
+                            )
+                            print("Contact updated successfully.")
+                        else:
+                            print("Invalid input! Returning to menu.")
+
 
                     elif inp == 4:
                         keyword = str(input("Enter Keyword (Name or Phone Number): "))
                         searched_contacts = db_operations.search_contact(keyword)
-                        for contact in searched_contacts:
-                            print(contact)
+
+                        if not searched_contacts:
+                            print("No Contact Found")
+                        else:
+                            for contact in searched_contacts:
+                                print(contact)
+
 
                     elif inp == 5:
                         contacts_names = db_operations.view_all_contact()
