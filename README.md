@@ -29,18 +29,34 @@ Simple. Functional. Efficient.
 
 ## Project Structure
 
-```
-Contact-Management-System/
-├── database/
-│   └── contacts.db       # SQLite database storing all contact information
-│
-├── main.py               # Core application logic and CLI interface
-│                         # Includes all functions: add, view, update, delete, search
-│
-└── README.md             # This documentation file explaining the project
-```
+Contact-Management-System
 
-> The `contacts.db` file is auto-generated the first time you run the program.
+├── .idea  
+
+* inspectionProfiles                   # Code inspection and formatting settings
+
+├── database
+
+* contacts.db                          # SQLite database storing all contact information
+
+├── scripts
+
+* ├── __pycache__                      # Auto-generated compiled Python files
+    
+* ├── db_operations.py                 # Core database functions: add, view, search, delete, update
+   *  initialize_db.py                 # Initializes the database and creates tables if not present
+
+├── .gitignore                         # Specifies untracked files to ignore in Git
+
+├── .gitattributes                     # Git configuration for repository attributes
+
+├── main.py                            # Main CLI interface (entry point of the application)
+
+├── README.md                          # Project documentation (you’re reading it!)
+
+
+
+     > The `contacts.db` file is auto-generated the first time you run the program.
 
 ---
 
