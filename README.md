@@ -119,8 +119,7 @@ It’s great for beginners learning Python or anyone who wants a functional offl
 
 - **Mayank Singh** — [LinkedIn](https://www.linkedin.com/in/mayank-singh-367572246/) • [GitHub](https://github.com/thakurmayanksingh)
 - **Ishita Modi** — [LinkedIn](https://www.linkedin.com/in/ishita-modi-155676341/) • [GitHub](https://github.com/ishita230105)
-
-We collaborated on this project to improve our development skills and to build something helpful for the community.
+ 
 ---
 
 *Thanks for checking it out! Contributions and suggestions are always welcome.*
