@@ -1,4 +1,5 @@
 import sqlite3 as sql
+import csv
 
 directory = "database/contacts.db"
 
@@ -71,6 +72,23 @@ try:
         result = cur.fetchone()
         conn.close()
         return result is not None
+
+    def export_to_csv(filename="contacts_export.csv"):
+        try:
+            conn = sql.connect(directory)
+            cur = conn.cursor()
+            cur.execute('''
+                SELECT * FROM contacts;
+            ''')
+            rows = cur.fetchall()
+            conn.close()
+            with open(filename, mode='w', newline='', encoding='utf-8') as file:
+                writer = csv.writer(file)
+                writer.writerow(['ID', 'Name', 'Phone', 'Email', 'Address'])
+                writer.writerows(rows)
+            print(f"Contacts Exported Successfully to {filename}\n'")
+        except Exception as e:
+            print(f"Contacts Failed to Export.\nError: {e}")
 
 except Exception as e:
     print(f"Error: {e}")
