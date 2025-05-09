@@ -1,5 +1,4 @@
 import sqlite3 as sql
-import csv
 
 directory = "database/contacts.db"
 
@@ -30,34 +29,55 @@ try:
     def search_contact(keyword):
         conn = sql.connect(directory)
         cur = conn.cursor()
-
-        keyword = f"%{keyword}%"
-
         cur.execute('''
             SELECT * FROM contacts 
             WHERE name LIKE ? OR phone LIKE ?;
-        ''', (keyword,keyword))
-
+        ''', (f"%{keyword}", f"%{keyword}"))
         rows = cur.fetchall()
         conn.close()
-        return rows
-
-
-
-
+        if rows:
+            return rows
+        else:
+            return "No Contact Found"
 
     # Delete Contact
     def delete_contact(keyword):
-        conn=sql.connect(directory)
-        cur=conn.cursor()
+        conn = sql.connect(directory)
+        cur = conn.cursor()
         cur.execute('''
-            DELETE FROM contacts WHERE name like ? OR phone like ?;        
-        ''', (f"%{keyword}", f"%{keyword}"))
-        conn.commit()
+            SELECT * FROM contacts WHERE name LIKE ? OR phone LIKE ?;
+        ''', (f"%{keyword}%", f"%{keyword}%"))
+        matches = cur.fetchall()
+
+        if not matches:
+            print("No contact found matching that keyword.")
+        elif len(matches) == 1:
+            contact = matches[0]
+            cur.execute('DELETE FROM contacts WHERE id = ?', (contact[0],))
+            conn.commit()
+            print(f"Deleted contact: {contact}")
+        else:
+            print("Multiple contacts found:")
+            for idx, contact in enumerate(matches, 1):
+                print(f"{idx}. Name: {contact[1]}, Phone: {contact[2]}")
+
+            try:
+                choice = int(input("Enter the number of the contact you want to delete: "))
+                if 1 <= choice <= len(matches):
+                    selected_contact = matches[choice - 1]
+                    cur.execute('DELETE FROM contacts WHERE id = ?', (selected_contact[0],))
+                    conn.commit()
+                    print("Contact deleted.")
+                else:
+                    print("Invalid choice.")
+            except ValueError:
+                print("Invalid input. Deletion cancelled.")
+
         conn.close()
 
-    # Update All Fields
-    def update_All_field(contact_id, new_name, new_phone, new_email, new_address):
+
+    # Update Contact
+    def update_contact(contact_id, new_name, new_phone, new_email, new_address):
         conn = sql.connect(directory)
         cur = conn.cursor()
         cur.execute('''
@@ -65,41 +85,6 @@ try:
             SET name=?, phone=?, email=?, address=?
             WHERE id=?
         ''', (new_name, new_phone, new_email, new_address, contact_id))
-        conn.commit()
-        conn.close()
-
-    # Update Particular Field
-    def update_particular_field(contact_id, new_name=None, new_phone=None, new_email=None, new_address=None):
-        conn = sql.connect(directory)
-        cur = conn.cursor()
-
-        fields = []
-        values = []
-
-        if new_name is not None:
-            fields.append("name = ?")
-            values.append(new_name)
-        if new_phone is not None:
-            fields.append("phone = ?")
-            values.append(new_phone)
-        if new_email is not None:
-            fields.append("email = ?")
-            values.append(new_email)
-        if new_address is not None:
-            fields.append("address = ?")
-            values.append(new_address)
-        if not fields:
-            print("No fields to update.")
-            return
-
-        values.append(contact_id)
-
-        query = f'''
-            UPDATE contacts
-            SET {", ".join(fields)}
-            WHERE id = ?
-        '''
-        cur.execute(query, values)
         conn.commit()
         conn.close()
 
@@ -113,33 +98,14 @@ try:
         conn.close()
         return result is not None
 
-    def export_to_csv(filename="contacts_export.csv"):
-        try:
-            conn = sql.connect(directory)
-            cur = conn.cursor()
-            cur.execute('''
-                SELECT * FROM contacts;
-            ''')
-            rows = cur.fetchall()
-            conn.close()
-            with open(filename, mode='w', newline='', encoding='utf-8') as file:
-                writer = csv.writer(file)
-                writer.writerow(['ID', 'Name', 'Phone', 'Email', 'Address'])
-                writer.writerows(rows)
-            print(f"Contacts Exported Successfully to {filename}\n'")
-        except Exception as e:
-            print(f"Contacts Failed to Export.\nError: {e}")
-
 except Exception as e:
     print(f"Error: {e}")
-# update_particular_field(contact_id=18, new_name='Ishita')
-# update_All_field()    
-
+add_contact("shruti", "7967488576", "ishitamodi0gmai.com", "fzd")
 # contacts = view_all_contact()
 # for contact in contacts:
 #     print(contact)
 # print()
 
 # print(search_contact(""))
-# delete_contact("Kriti Singh")
+# delete_contact("ishita")
 # update_contact(16, "Ishita Singh Modi", "7983138050", "ishitamodi@gmail.com", "Firozabad")
